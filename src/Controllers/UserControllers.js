@@ -99,9 +99,10 @@ const getUsers = CatchAsyncError(async (req, res, next) => {
 })
 
 const getSingleUser = CatchAsyncError(async (req, res, next) => {
+    console.log("\nEntered Into Get Single User")
     try {
         const { id } = req.params;
-        const user = User.findById(id)
+        const user = await User.findById(id)
         if (!user) {
             return res.status(404).json({
                 "message": "User Not Found",
