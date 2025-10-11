@@ -6,6 +6,11 @@ const ProductSchema = new mongoose.Schema({
         required: [true, "Enter Product Name"],
         trim: true
     },
+    model: {
+        type: String,
+        required: [true, "Enter The Product Model"],
+        unique: [true, "Product Model Already Present"]
+    },
     user: mongoose.Schema.ObjectId,
     price: {
         type: Number,

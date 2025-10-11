@@ -10,7 +10,7 @@ router.route("/createProducts").post(isAuthenticate, authenticateRoles("admin"),
 router.route("/getAllProducts").get(isAuthenticate, getAllProducts)
 
 router.route("/getSingleProducts/:id").get(isAuthenticate, getSingleProduct)
-    
+
 router.route("/editProducts/:id")
     .put(isAuthenticate, authenticateRoles("admin"), updateProduct)
     .delete(isAuthenticate, authenticateRoles("admin"), deleteProduct)
