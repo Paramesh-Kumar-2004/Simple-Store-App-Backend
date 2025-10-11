@@ -98,6 +98,7 @@ const getUsers = CatchAsyncError(async (req, res, next) => {
     }
 })
 
+
 const getSingleUser = CatchAsyncError(async (req, res, next) => {
     console.log("\nEntered Into Get Single User")
     try {

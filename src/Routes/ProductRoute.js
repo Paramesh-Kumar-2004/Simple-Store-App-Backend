@@ -15,4 +15,6 @@ router.route("/editProducts/:id")
     .put(isAuthenticate, authenticateRoles("admin"), updateProduct)
     .delete(isAuthenticate, authenticateRoles("admin"), deleteProduct)
 
+
+
 module.exports = router
