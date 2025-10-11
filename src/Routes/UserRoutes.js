@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 
-const { registerUser, loginUser, getUsers, createUser, deleteUser, updateUser } = require("../Controllers/UserControllers")
+const { registerUser, loginUser, getUsers, createUser, deleteUser, updateUser, getSingleUser } = require("../Controllers/UserControllers")
 const { isAuthenticate, authenticateRoles } = require("../Middleware/AuthenticateUser")
 
 
@@ -13,6 +13,7 @@ router.route("/users")
     .post(isAuthenticate, authenticateRoles("admin"), createUser)
 
 router.route("/user/:id")
+    .get(isAuthenticate, authenticateRoles("admin"), getSingleUser)
     .delete(isAuthenticate, authenticateRoles("admin"), deleteUser)
     .put(isAuthenticate, authenticateRoles("admin"), updateUser)
 

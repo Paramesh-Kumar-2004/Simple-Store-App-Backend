@@ -98,6 +98,26 @@ const getUsers = CatchAsyncError(async (req, res, next) => {
     }
 })
 
+const getSingleUser = CatchAsyncError(async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const user = User.findById(id)
+        if (!user) {
+            return res.status(404).json({
+                "message": "User Not Found",
+                id,
+            })
+        }
+        res.status(200).json({
+            "message": "User Found Successfully",
+            user
+        })
+    }
+    catch (error) {
+        return next(new ErrorHandler(error, 500))
+    }
+})
+
 
 const createUser = CatchAsyncError(async (req, res, next) => {
     try {
@@ -190,4 +210,4 @@ const updateUser = CatchAsyncError(async (req, res, next) => {
     }
 })
 
-module.exports = { registerUser, loginUser, getUsers, createUser, deleteUser, updateUser }
+module.exports = { registerUser, loginUser, getSingleUser, getUsers, createUser, deleteUser, updateUser }

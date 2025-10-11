@@ -11,6 +11,7 @@ const createProduct = CatchAsyncError(async (req, res, next) => {
         user = req.user.id
         const {
             name,
+            model,
             price,
             category,
             description,
@@ -22,6 +23,7 @@ const createProduct = CatchAsyncError(async (req, res, next) => {
 
         const product = await Product.create({
             name,
+            model,
             price,
             user,
             category,
