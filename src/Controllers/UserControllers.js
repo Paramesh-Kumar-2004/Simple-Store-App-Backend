@@ -63,6 +63,7 @@ const loginUser = CatchAsyncError(async (req, res, next) => {
         }
 
         const token = await user.getJWTtoken()
+
         res.status(200)
             .cookie("token", token, cookieOptions)
             .json(new ApiResponse(200, { user, token }, "Login Success"))
