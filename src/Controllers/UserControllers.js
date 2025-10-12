@@ -75,6 +75,22 @@ const loginUser = CatchAsyncError(async (req, res, next) => {
 })
 
 
+const logoutUser = CatchAsyncError(async (req, res, next) => {
+    try {
+        const user = await User.findById(req.user.id)
+        console.log("Logout")
+        res.clearCookie("token")
+        return res.status(200).json({
+            "message": "Logout Success"
+        })
+    }
+    catch (error) {
+        return next(new ErrorHandler(error.message, 500))
+        console.log(error.message)
+    }
+})
+
+
 const getUsers = CatchAsyncError(async (req, res, next) => {
     try {
         const user = await User.find()
@@ -212,4 +228,4 @@ const updateUser = CatchAsyncError(async (req, res, next) => {
     }
 })
 
-module.exports = { registerUser, loginUser, getSingleUser, getUsers, createUser, deleteUser, updateUser }
+module.exports = { registerUser, loginUser, logoutUser, getSingleUser, getUsers, createUser, deleteUser, updateUser }

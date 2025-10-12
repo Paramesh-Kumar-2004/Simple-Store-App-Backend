@@ -11,7 +11,7 @@ const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(cors())
+app.use(cors({ origin: true, credentials: true }));
 app.use(cookieParser())
 
 ConnectDB()
@@ -25,7 +25,9 @@ const ProductRoutes = require("./Routes/ProductRoute")
 app.use("/api/v1/", UserRoutes)
 app.use("/api/v1/", ProductRoutes)
 
-
+app.get("/", (req, res) => {
+    res.json("Done")
+})
 
 app.use(ErrorHandlerMiddleWare)
 

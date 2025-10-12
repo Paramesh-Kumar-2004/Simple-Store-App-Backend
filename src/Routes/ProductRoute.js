@@ -7,7 +7,8 @@ const router = express.Router()
 
 router.route("/createProducts").post(isAuthenticate, authenticateRoles("admin"), createProduct)
 
-router.route("/getAllProducts").get(isAuthenticate, getAllProducts)
+// router.route("/getAllProducts").get(isAuthenticate, getAllProducts)
+router.route("/getAllProducts").get(getAllProducts)
 
 router.route("/getSingleProducts/:id").get(isAuthenticate, getSingleProduct)
 
