@@ -8,7 +8,9 @@ const Product = require("../Models/ProductModel");
 const createProduct = CatchAsyncError(async (req, res, next) => {
     console.log("\nEntered Into Create Products")
     try {
-        user = req.user.id
+        const user = req.user.id
+        const img = req.file ? req.file.path : null
+
         const {
             name,
             model,
@@ -31,7 +33,8 @@ const createProduct = CatchAsyncError(async (req, res, next) => {
             stock,
             sellerName,
             sellerEmail,
-            sellerPhone
+            sellerPhone,
+            image: img
         });
 
         res.status(201).json({

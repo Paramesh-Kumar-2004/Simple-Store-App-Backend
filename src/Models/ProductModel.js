@@ -12,6 +12,7 @@ const ProductSchema = new mongoose.Schema({
         unique: [true, "Given Product Already Present"]
     },
     user: mongoose.Schema.ObjectId,
+    image: String,
     price: {
         type: Number,
         required: [true, "Enter Product Price"],

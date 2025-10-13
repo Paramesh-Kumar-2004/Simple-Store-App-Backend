@@ -8,7 +8,8 @@ const { isAuthenticate, authenticateRoles } = require("../Middleware/Authenticat
 
 router.route("/register").post(registerUser)
 router.route("/login").post(loginUser)
-router.route("/logout").get(isAuthenticate, logoutUser)
+// router.route("/logout").get(isAuthenticate, logoutUser)
+router.route("/logout").get(logoutUser)
 router.route("/users")
     .get(isAuthenticate, authenticateRoles("admin"), getUsers)
     .post(isAuthenticate, authenticateRoles("admin"), createUser)
