@@ -1,0 +1,49 @@
+Problem:
+TypeError: Cannot read properties of undefined (reading 'single')
+This error occurs because 'upload' is undefined, likely due to multer not being imported or initialized properly.
+
+Correct Code Example:
+// At the top of your ProductRoute.js file, add:
+const multer = require('multer');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' }); // or configure storage as needed
+
+const express = require('express');
+const router = express.Router();
+const { isAuthenticate, authenticateRoles } = require('../middleware/auth');
+const { createProduct } = require('../controllers/productController');
+
+// Create Product Route
+router.route("/createProducts").post(
+    isAuthenticate,
+    authenticateRoles("admin"),
+    upload.single("img"),
+    createProduct
+);
+
+module.exports = router;
+
+// Then use 'upload.single("img")' in your route:
+router.route("/createProducts").post(isAuthenticate, authenticateRoles("admin"), upload.single("img"), createProduct);
+
+Make sure to install multer if you haven't already:
+npm install multer
+
+
+
+
+
+
+
+
+{
+  "name": "Wireless Earbuds",
+  "model": "AirBuds X2",
+  "price": 2999,
+  "category": "Electronics",
+  "description": "High-quality wireless earbuds with noise cancellation.",
+  "stock": 50,
+  "sellerName": "TechStore",
+  "sellerEmail": "contact@techstore.com",
+  "sellerPhone": "+919876543210"
+}

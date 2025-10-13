@@ -3,36 +3,31 @@ const path = require("path");
 
 // Storage configuration
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, "./uploads");
+    destination: (req, file, cb) => {
+        cb(null, "uploads/"); // Folder where files will be stored
     },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-        cb(
-            null,
-            file.fieldname + "-" + uniqueSuffix + path.extname(file.originalname)
-        );
+    filename: (req, file, cb) => {
+        const uniqueName = Date.now() + "-" + Math.round(Math.random() * 1e9);
+        cb(null, uniqueName + path.extname(file.originalname));
     },
 });
 
-// File filter (only images)
+// File filter (optional)
 const fileFilter = (req, file, cb) => {
-    const allowedTypes = /jpeg|jpg|png|webp/;
+    const allowed = /jpeg|jpg|png|webp/;
     const ext = path.extname(file.originalname).toLowerCase();
-    if (allowedTypes.test(ext)) {
+    if (allowed.test(ext)) {
         cb(null, true);
     } else {
-        cb(new Error("Only .jpg, .jpeg, .png, .webp files are allowed!"), false);
+        cb(new Error("Only image files are allowed"), false);
     }
 };
 
-
+// Create upload middleware
 const upload = multer({
     storage,
-    limits: {
-        fileSize: 24 * 1024 * 1024,
-    },
     fileFilter,
+    limits: { fileSize: 2 * 1024 * 1024 }, // 2 MB limit
 });
 
-module.exports = upload.single("img");
+module.exports = upload;
