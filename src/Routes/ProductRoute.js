@@ -1,9 +1,12 @@
 const express = require("express")
-const { createProduct, getAllProducts, getSingleProduct, updateProduct, deleteProduct } = require("../Controllers/ProductController")
+const { createProduct,
+    getAllProducts,
+    getSingleProduct,
+    updateProduct,
+    deleteProduct
+} = require("../Controllers/ProductController")
 const { isAuthenticate, authenticateRoles } = require("../Middleware/AuthenticateUser")
-
-const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
+const upload = require("../Middleware/Multer")
 
 const router = express.Router()
 

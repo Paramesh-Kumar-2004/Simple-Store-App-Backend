@@ -1,3 +1,6 @@
+const fs = require('fs').promises;
+const path = require("path")
+
 const CatchAsyncError = require("../Middleware/CatchAsyncError");
 const ErrorHandler = require("../Utils/ErrorHandler");
 const Product = require("../Models/ProductModel");
@@ -9,7 +12,7 @@ const createProduct = CatchAsyncError(async (req, res, next) => {
     console.log("\nEntered Into Create Products")
     try {
         const user = req.user.id
-        const img = req.file ? req.file.path : null
+        const img = req.file ? req.file.path.replace(/\\/g, "/") : null;
 
         const {
             name,
@@ -40,10 +43,20 @@ const createProduct = CatchAsyncError(async (req, res, next) => {
         res.status(201).json({
             success: true,
             message: "Product created successfully",
-            product
+            product,
         });
     }
     catch (error) {
+        try {
+            if (req.file && req.file.path) {
+                const filePath = path.resolve(req.file.path);
+                console.log("Deleting file:", filePath);
+                await fs.unlink(filePath);
+            }
+        }
+        catch (err) {
+            console.error("Failed to delete file:", err);
+        }
         return next(new ErrorHandler(error.message, 400));
     }
 });
