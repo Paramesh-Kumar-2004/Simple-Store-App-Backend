@@ -21,6 +21,7 @@ ConnectDB()
 const UserRoutes = require("./Routes/UserRoutes")
 const ProductRoutes = require("./Routes/ProductRoute")
 
+app.use("/uploads", express.static("uploads"));
 
 app.use("/api/v1/", UserRoutes)
 app.use("/api/v1/", ProductRoutes)

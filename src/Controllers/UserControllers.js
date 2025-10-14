@@ -66,7 +66,15 @@ const loginUser = CatchAsyncError(async (req, res, next) => {
 
         res.status(200)
             .cookie("token", token, cookieOptions)
-            .json(new ApiResponse(200, { user, token }, "Login Success"))
+            .status(200)
+            .json({
+                "message": "Login Success",
+                // user,
+                name: user.name,
+                email: user.email,
+                role: user.role,
+                token
+            })
 
     }
     catch (error) {

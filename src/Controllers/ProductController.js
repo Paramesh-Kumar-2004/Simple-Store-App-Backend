@@ -57,7 +57,7 @@ const createProduct = CatchAsyncError(async (req, res, next) => {
         catch (err) {
             console.error("Failed to delete file:", err);
         }
-        return next(new ErrorHandler(error.message, 400));
+        return next(new ErrorHandler(error.message, 500));
     }
 });
 

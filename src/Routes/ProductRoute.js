@@ -12,7 +12,8 @@ const router = express.Router()
 
 
 
-router.route("/createProducts").post(isAuthenticate, authenticateRoles("admin"), upload.single("img"), createProduct)
+router.route("/createProducts").post(isAuthenticate, authenticateRoles("admin"), createProduct)
+// router.route("/createProducts").post(isAuthenticate, authenticateRoles("admin"), upload.single("img"), createProduct)
 
 // router.route("/getAllProducts").get(isAuthenticate, getAllProducts)
 router.route("/getAllProducts").get(getAllProducts)
