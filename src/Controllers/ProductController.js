@@ -9,7 +9,7 @@ const Product = require("../Models/ProductModel");
 
 // 1 Create Product
 const createProduct = CatchAsyncError(async (req, res, next) => {
-    console.log("\nEntered Into Create Products")
+    console.log("Entered Into Create Product Controller")
     try {
         const user = req.user.id
         const img = req.file ? req.file.path.replace(/\\/g, "/") : null;
@@ -64,6 +64,7 @@ const createProduct = CatchAsyncError(async (req, res, next) => {
 
 // 2 Get All Products
 const getAllProducts = CatchAsyncError(async (req, res, next) => {
+    console.log("Entered Into Get All Product Controller")
     try {
         const products = await Product.find();
         res.status(200).json({
@@ -80,6 +81,7 @@ const getAllProducts = CatchAsyncError(async (req, res, next) => {
 
 // 3 Get Single Product
 const getSingleProduct = CatchAsyncError(async (req, res, next) => {
+    console.log("Entered Into Get Single Product Controller")
     try {
         const product = await Product.findById(req.params.id);
 
@@ -100,6 +102,7 @@ const getSingleProduct = CatchAsyncError(async (req, res, next) => {
 
 // 4 Update Product
 const updateProduct = CatchAsyncError(async (req, res, next) => {
+    console.log("Entered Into Update Product Controller")
     try {
         let product = await Product.findById(req.params.id);
 
@@ -135,6 +138,7 @@ const updateProduct = CatchAsyncError(async (req, res, next) => {
 
 // 5 Delete Product
 const deleteProduct = CatchAsyncError(async (req, res, next) => {
+    console.log("Entered Into Delete Product Controller")
     try {
         const { id } = req.params;
         const product = await Product.findById(id);

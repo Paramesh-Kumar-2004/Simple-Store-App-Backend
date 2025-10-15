@@ -13,6 +13,7 @@ const cookieOptions = {
 
 
 const registerUser = CatchAsyncError(async (req, res, next) => {
+    console.log("Entered Into Register User Controller")
     try {
         const { name, email, password } = req.body;
         if (!name || !email || !password) {
@@ -43,6 +44,7 @@ const registerUser = CatchAsyncError(async (req, res, next) => {
 
 
 const loginUser = CatchAsyncError(async (req, res, next) => {
+    console.log("Entered Into Login User Controller")
     try {
         const { email, password } = req.body;
         if (!email || !password) {
@@ -75,7 +77,6 @@ const loginUser = CatchAsyncError(async (req, res, next) => {
                 role: user.role,
                 token
             })
-
     }
     catch (error) {
         console.log(error)
@@ -85,9 +86,9 @@ const loginUser = CatchAsyncError(async (req, res, next) => {
 
 
 const logoutUser = CatchAsyncError(async (req, res, next) => {
+    console.log("Entered Into Login Out User Controller")
     try {
         // const user = await User.findById(req.user.id)
-        console.log("Logout")
         res.clearCookie("token")
         return res.status(200).json({
             "message": "Logout Success"
@@ -101,6 +102,7 @@ const logoutUser = CatchAsyncError(async (req, res, next) => {
 
 
 const getUsers = CatchAsyncError(async (req, res, next) => {
+    console.log("Entered Into Get User Controller")
     try {
         const user = await User.find()
 
@@ -109,7 +111,6 @@ const getUsers = CatchAsyncError(async (req, res, next) => {
                 "message": "User Not Found",
             })
         }
-
 
         return res.status(200).json({
             "message": "Users Found",
@@ -125,7 +126,7 @@ const getUsers = CatchAsyncError(async (req, res, next) => {
 
 
 const getSingleUser = CatchAsyncError(async (req, res, next) => {
-    console.log("\nEntered Into Get Single User")
+    console.log("Entered Into Get Single User Controller")
     try {
         const { id } = req.params;
         const user = await User.findById(id)
@@ -147,6 +148,7 @@ const getSingleUser = CatchAsyncError(async (req, res, next) => {
 
 
 const createUser = CatchAsyncError(async (req, res, next) => {
+    console.log("Entered Into Create User Controller")
     try {
         const { name, email, password } = req.body;
         if (!name || !email || !password) {
@@ -181,6 +183,7 @@ const createUser = CatchAsyncError(async (req, res, next) => {
 
 
 const deleteUser = CatchAsyncError(async (req, res, next) => {
+    console.log("Entered Into Delete User Controller")
     try {
         const { id } = req.params;
 
@@ -207,6 +210,7 @@ const deleteUser = CatchAsyncError(async (req, res, next) => {
 
 
 const updateUser = CatchAsyncError(async (req, res, next) => {
+    console.log("Entered Into Update User Controller")
     try {
 
         const { id } = req.params;
