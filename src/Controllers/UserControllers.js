@@ -86,7 +86,7 @@ const loginUser = CatchAsyncError(async (req, res, next) => {
 
 
 const logoutUser = CatchAsyncError(async (req, res, next) => {
-    console.log("Entered Into Login Out User Controller")
+    console.log("Entered Into Log Out User Controller")
     try {
         // const user = await User.findById(req.user.id)
         res.clearCookie("token")
