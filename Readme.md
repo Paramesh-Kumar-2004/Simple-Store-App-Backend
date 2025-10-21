@@ -1,4 +1,4 @@
-# Store — Backend
+# Store — Backend (This Is Just A Prototype)
 
 A backend service for the Store project. This repository contains APIs, database migrations, and infrastructure for the server-side of the application.
 
@@ -24,7 +24,7 @@ This service exposes REST/JSON APIs for users, authentication, products, carts a
 
 ## Run
 
-Start:
+1. Start :
 
 - npm start
 
