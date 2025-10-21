@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const User = require("../Models/UserModel")
 
 async function ConnectDB() {
-    mongoose.connect("mongodb://127.0.0.1:27017/Store")
+    mongoose.connect(process.env.DB_URL)
         .then(async () => {
             try {
                 const user = await User.findOne({ email: process.env.ADMIN_EMAIL })
@@ -21,6 +21,3 @@ async function ConnectDB() {
 }
 
 module.exports = ConnectDB;
-
-
-
