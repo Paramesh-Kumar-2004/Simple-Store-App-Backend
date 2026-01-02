@@ -1,60 +1,44 @@
 # Store — Backend (This Is Just A Prototype)
 
-A backend service for the Store project. This repository contains APIs, database migrations, and infrastructure for the server-side of the application.
+## Introduction
 
-## Table of contents
+This is a backend service for the Store project. It provides APIs for the frontend application to interact with the database and perform CRUD operations.
 
-- Project overview
-- Tech stack
-- Quick start
-- Run
-- API overview
-- License
-
-## Project overview
-
-This service exposes REST/JSON APIs for users, authentication, products, carts and orders. It is designed to be container-friendly and to run locally for development.
-
-## Tech stack
+## Technologies Used
 
 - Node.js
-- Express
-- DB : Mongoose
+- Express.js
 - MongoDB
+- Mongoose
 
-## Run
+## Features
 
-1. Start :
+- User authentication and authorization
+- CRUD operations for products
+- File upload and retrieval
 
-- npm start
+## Installation
 
-## API overview
+1. Clone the repository
+2. Install dependencies using `npm install`
+3. Start the server using `npm start`
 
-Base URL: http://localhost:${PORT:-4000}/api
+## API Endpoints
 
-Common endpoints (only few examples):
+### User Endpoints
 
-- POST /api/auth/register
-- POST /api/auth/login
-- GET /api/products
-- GET /api/products/:id
-- POST /api/orders
-- GET /api/users/:id/orders
+- `/api/v1/users/register`: Register a new user
+- `/api/v1/users/login`: Login an existing user
+- `/api/v1/users/logout`: Logout an existing user
+- `/api/v1/users/getAllUsers`: Get all users
+- `/api/v1/users/getSingleUser/:id`: Get a single user by ID
+- `/api/v1/users/updateUser/:id`: Update a single user by ID
+- `/api/v1/users/deleteUser/:id`: Delete a single user by ID
 
-Include authentication (Bearer JWT) for protected routes. Maintain a Postman/Insomnia collection for manual testing.
+### Product Endpoints
 
-## Observability & ops
-
-- Include request logging and error tracking
-- Support graceful shutdown
-- Health check endpoint: GET /health
-
-## License
-
-Specify license in LICENSE file (e.g., MIT).
-
-## Contact
-
-For questions, open an issue or create a pull request.
-
-Fill details (framework, ORM, scripts) to match your implementation.
+- `/api/v1/products/createProduct`: Create a new product
+- `/api/v1/products/getAllProducts`: Get all products
+- `/api/v1/products/getSingleProduct/:id`: Get a single product by ID
+- `/api/v1/products/updateProduct/:id`: Update a single product by ID
+- `/api/v1/products/deleteProduct/:id`: Delete a single product by ID
